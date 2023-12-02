@@ -38,21 +38,31 @@ const Footer = (props) => {
 				</div>
 			</div>
 			<div className="flex flex-row flex-wrap w-full justify-between px-7 -mx-7 pt-3">
-				<Image
-					src={facebook}
-					className="w-2"
-					alt=""
-				></Image>
-				<Image
-					src={twitter}
-					className="w-5"
-					alt=""
-				></Image>
-				<Image
-					src={instagram}
-					className="w-4"
-					alt=""
-				></Image>
+				<Link href="">
+					<Image
+						src={facebook}
+						className="w-2"
+						alt=""
+					></Image>
+				</Link>
+
+				<Link href="">
+					<Image
+						src={twitter}
+						className="w-5"
+						alt=""
+					></Image>
+				</Link>
+
+				<Link href="">
+					{" "}
+					<Image
+						src={instagram}
+						className="w-4"
+						alt=""
+					></Image>
+				</Link>
+
 				<div className="flex flex-row gap-2">
 					<Image
 						src={copyright}
