@@ -1,12 +1,14 @@
+"use client";
 import Input from "../UI/Input";
-import UploadButton from "../UI/UploadThing";
+import Upload from "./Upload";
+//import UploadButton from "../UI/UploadThing";
 const AdminPage = (props) => {
 	return (
 		<div className="flex items-center justify-center py-6 px-4  flex-col">
 			<h1 className="text-grey-D9 text-3xl font-source font-semibold pb-3">
 				Enter Data
 			</h1>
-			<UploadButton endpoint='imageUploader' onClientUploadComplete={(res) => {console.log("Fir")}} />
+			<Upload></Upload>
 
 			<button className="bg-grey-22 h-24 w-24 rounded-lg mb-3"></button>
 			{/* <div>Product Name</div> */}

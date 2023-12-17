@@ -1,4 +1,4 @@
-import AdminPage from "@/components/Admin/Admin";
+import AdminPage from "../../components/Admin/Admin";
 const Admin = (props) => {
     return(
         <AdminPage></AdminPage>
