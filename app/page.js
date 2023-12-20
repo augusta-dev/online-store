@@ -1,4 +1,4 @@
-import MenuBar from "@/components/UI/MenuBar"
+import MenuBar from "../components/UI/MenuBar"
 export default function Home() {
   return(
     <div>
