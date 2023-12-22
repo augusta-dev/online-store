@@ -9,7 +9,7 @@ export default function Upload() {
 	useEffect(() => {
 		uploadCtx.setImages(totalImages);
 	}, [totalImages]);
-	
+
 	return (
 		<>
 			<UploadButton
@@ -21,10 +21,7 @@ export default function Upload() {
 						Key: response.key,
 						Url: response.url,
 					}));
-					setTotalImages((prevImages) => [
-						//...prevImages,
-						...newImages,
-					]);
+					setTotalImages([...newImages]);
 					console.log("Files: ", res, totalImages);
 				}}
 				onUploadError={(error) => {
