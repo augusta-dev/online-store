@@ -12,59 +12,31 @@ const AdminPage = (props) => {
 	const UploadCtx = useContext(UploadContext);
 	const images = UploadCtx.images;
 	const [isFull, setIsFull] = useState(false);
-	//const [productName, brandName, colorOptions, sizeOptions, initialPrice, finalPrice] = "";
-	const [productName, setProductName] = useState("");
-	const [brandName, setBrandName] = useState("");
-	const [colorOptions, setColorOptions] = useState("");
-	const [sizeOptions, setSizeOptions] = useState("");
-	const [initialPrice, setInitialPrice] = useState("");
-	const [finalPrice, setFinalPrice] = useState("");
-	const details = {
-		pn: productName,
-		bn: brandName,
-		co: colorOptions,
-		so: sizeOptions,
-		ip: initialPrice,
-		fp: finalPrice,
-	};
+	const [details, setDetails] = useState({
+		pn: "",
+		bn: "",
+		co: "",
+		so: "",
+		ip: "",
+		fp: "",
+	});
 	const detailsArray = Object.values(details);
-	console.log(details);
 	useEffect(() => {
 		const boolean = [];
 		detailsArray.forEach((detail) => {
 			boolean.push(detail.length !== 0);
 		});
-		console.log(boolean)
-		setIsFull(boolean);
+		const allTrue = boolean.every((val) => val === true);
+		setIsFull(allTrue);
+	}, [details]);
 
-		// if (
-		// 	productName &&
-		// 	brandName &&
-		// 	colorOptions &&
-		// 	sizeOptions &&
-		// 	initialPrice &&
-		// 	finalPrice
-		// ) {
-		// 	setIsFull(true);
-		// } else{
-		// 	setIsFull(false);
+	const submitHandler = (e) => {
+		e.preventDefault()
+		// if (UploadCtx.images.length > 0 && isFull) {
+			UploadCtx.setDetails(details);
 		// }
-	}, [
-		productName,
-		brandName,
-		colorOptions,
-		sizeOptions,
-		initialPrice,
-		finalPrice,
-	]);
-
-	const submitHandler = () => {
-		if (UploadCtx.images.length > 0 && isFull) {
-			UploadCtx.setDetails();
-		}
 	};
 	return (
-		<UploadProvider>
 			<form className="flex items-center justify-center py-6 px-4  flex-col">
 				<h1 className="text-grey-D9 text-3xl font-source font-semibold pb-3">
 					Enter Data
@@ -81,48 +53,42 @@ const AdminPage = (props) => {
 				<Input
 					placeholder="Product Name"
 					onChange={(e) => {
-						setProductName(e.target.value);
-						console.log(e.target.value);
+						setDetails({ ...details, pn: e.target.value });
 					}}
 				/>
 				<Input
 					placeholder="Brand Name"
 					onChange={(e) => {
-						setBrandName(e.target.value);
-						console.log(e.target.value);
+						setDetails({ ...details, bn: e.target.value });
 					}}
 				/>
 				<Input
 					placeholder="Colour Options"
 					onChange={(e) => {
-						setColorOptions(e.target.value);
-						console.log(e.target.value);
+						setDetails({ ...details, co: e.target.value });
 					}}
 				/>
 				<Input
 					placeholder="Size Options"
 					onChange={(e) => {
-						setSizeOptions(e.target.value);
-						console.log(e.target.value);
+						setDetails({ ...details, so: e.target.value });
 					}}
 				/>
 				<Input
 					placeholder="Initial Price"
 					onChange={(e) => {
-						setInitialPrice(e.target.value);
-						console.log(e.target.value);
+						setDetails({ ...details, ip: e.target.value });
 					}}
 				/>
 				<Input
 					placeholder="Final Price"
 					onChange={(e) => {
-						setFinalPrice(e.target.value);
-						console.log(e.target.value);
+						setDetails({ ...details, fp: e.target.value });
 					}}
 				/>
 
 				<button
-					onClick={submitHandler}
+					onClick={(e)=> {submitHandler(e)}}
 					className={`${
 						isFull ? "bg-grey-D9" : "bg-grey-67"
 					} h-12 w-full rounded-lg mt-16 text-grey-12 text-2xl font-medium`}
@@ -130,7 +96,6 @@ const AdminPage = (props) => {
 					Save
 				</button>
 			</form>
-		</UploadProvider>
 	);
 };
 export default AdminPage;

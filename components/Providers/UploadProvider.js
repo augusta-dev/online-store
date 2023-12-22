@@ -4,8 +4,9 @@ import React from "react";
 import UploadContext from "./UploadContext";
 
 const uploadReducer = (state, action) => {
-	if (action.type === "UPLOAD") {
+	if (action.type === "DETAIL") {
 		const detail = action.detail;
+		console.log(detail)
 		return {
 			...state,
 			productName: detail.pn,
@@ -16,8 +17,12 @@ const uploadReducer = (state, action) => {
 			finalPrice: detail.fp,
 		};
 	}
-	if (action.type === "DETAIL") {
-		return { ...state, images: action.images };
+	if (action.type === "IMAGES") {
+		const currentImages = (state.images==undefined) ? [] : state.images;
+		const images = currentImages.concat(action.images);
+		console.log(state.images, action.images)
+		console.log(images)
+		return { ...state, images: images };
 	}
 };
 

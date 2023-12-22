@@ -1,11 +1,15 @@
 "use client";
 import React from "react";
 import { UploadButton } from "@uploadthing/react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import UploadContext from "../Providers/UploadContext";
 export default function Upload() {
-	const [images, setImages] = useState([]);
 	const [totalImages, setTotalImages] = useState([]);
-	//console.log(totalImages);
+	const uploadCtx = useContext(UploadContext);
+	useEffect(() => {
+		uploadCtx.setImages(totalImages);
+	}, [totalImages]);
+	
 	return (
 		<>
 			<UploadButton
@@ -16,8 +20,11 @@ export default function Upload() {
 					const newImages = res.map((response) => ({
 						Key: response.key,
 						Url: response.url,
-					  }));
-					  setTotalImages((prevImages) => [...prevImages, ...newImages]);
+					}));
+					setTotalImages((prevImages) => [
+						//...prevImages,
+						...newImages,
+					]);
 					console.log("Files: ", res, totalImages);
 				}}
 				onUploadError={(error) => {
