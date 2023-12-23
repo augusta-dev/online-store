@@ -11,7 +11,7 @@ const uploadReducer = (state, action) => {
 			...state,
 			productName: detail.pn,
 			brandName: detail.bn,
-			colorOptions: detail.co,
+			// colorOptions: detail.co,
 			sizeOptions: detail.so,
 			initialPrice: detail.ip,
 			finalPrice: detail.fp,
@@ -24,6 +24,14 @@ const uploadReducer = (state, action) => {
 		console.log(images)
 		return { ...state, images: images };
 	}
+	if (action.type === "COLOUR"){
+		const colours = state.colorOptions == undefined ? {} : state.colorOptions;
+		// const updateColour = colours.filter(color => action.colour)
+		console.log(action)
+		colours[action.colour[0]] = action.colour[1];
+		console.log(colours);
+		return{...state, colorOptions: colours}
+	}
 };
 
 const UploadProvider = (props) => {
@@ -35,6 +43,9 @@ const UploadProvider = (props) => {
 
 	const setImagesHandler = (images) =>
 		dispatchUploadAction({ type: "IMAGES", images: images });
+	const setColourOptionsHandler = (colour, value) => {
+		dispatchUploadAction({ type: "COLOUR", colour: colour});
+	}
 
 	const uploadContext = {
 		images: uploadState.images,
@@ -46,6 +57,7 @@ const UploadProvider = (props) => {
 		finalPrice: uploadState.finalPrice,
 		setDetails: setDetailHandler,
 		setImages: setImagesHandler,
+		setColourOption: setColourOptionsHandler,
 	};
 
 	return (

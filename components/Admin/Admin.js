@@ -4,7 +4,7 @@ import Input from "../UI/Input";
 import Upload from "./Upload";
 import UploadProvider from "../Providers/UploadProvider";
 import UploadContext from "../Providers/UploadContext";
-import ColourOptions from './ColourOptions'
+import ColourOptions from "./ColourOptions";
 
 import avatar from "../../assets/gamer.png";
 import { useContext, useState, useEffect } from "react";
@@ -12,11 +12,12 @@ import { useContext, useState, useEffect } from "react";
 const AdminPage = (props) => {
 	const UploadCtx = useContext(UploadContext);
 	const images = UploadCtx.images;
+	const co = UploadCtx.colorOptions;
 	const [isFull, setIsFull] = useState(false);
+	const [showCO, setShowCO] = useState(false);
 	const [details, setDetails] = useState({
 		pn: "",
 		bn: "",
-		co: "",
 		so: "",
 		ip: 0,
 		fp: 0,
@@ -32,11 +33,11 @@ const AdminPage = (props) => {
 		if (images !== undefined) {
 			images.length > 0 ? setIsFull(allTrue) : setIsFull(false);
 		}
-	}, [details, images]);
+	}, [details, images, co]);
 
 	const submitHandler = (e) => {
 		e.preventDefault();
-		if (images.length > 0 && isFull) {
+		if (images.length > 0 && co && isFull) {
 			console.log(images.length);
 			UploadCtx.setDetails(details);
 			sendImages();
@@ -49,7 +50,7 @@ const AdminPage = (props) => {
 				body: JSON.stringify({
 					productName: details.pn,
 					brandName: details.bn,
-					colorOpitons: details.co,
+					colorOptions: UploadCtx.colorOptions,
 					sizeOptions: details.so,
 					initialPrice: details.ip,
 					finalPrice: details.fp,
@@ -72,11 +73,11 @@ const AdminPage = (props) => {
 			</h1>
 
 			{/* <button className="text-grey-D9 bg-grey-22 h-24 w-24 rounded-lg mb-1 flex items-center align-middle justify-center"> */}
-				<Image
-					src={avatar}
-					className="self-center h-20 w-20 my-1"
-					alt="avatar"
-				></Image>
+			<Image
+				src={avatar}
+				className="self-center h-20 w-20 my-1"
+				alt="avatar"
+			></Image>
 			{/* </button> */}
 			<Upload></Upload>
 			<Input
@@ -93,14 +94,20 @@ const AdminPage = (props) => {
 					setDetails({ ...details, bn: e.target.value });
 				}}
 			/>
-			<ColourOptions></ColourOptions>
-			<Input
+			<button className="w-full h-12 mt-2 text-grey-67 bg-grey-22 text-left px-6"
+				onClick={(e) => {
+					e.preventDefault();
+					setShowCO(!showCO);
+				}}
+			>Colour Options</button>
+			{showCO && <ColourOptions></ColourOptions>}
+			{/* <Input
 				placeholder="Colour Options"
 				type="text"
 				onChange={(e) => {
 					setDetails({ ...details, co: e.target.value });
 				}}
-			/>
+			/> */}
 			<Input
 				placeholder="Size Options"
 				type="text"

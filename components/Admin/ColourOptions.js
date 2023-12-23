@@ -1,52 +1,82 @@
 import React from "react";
-import './colour-options.css'
+import "./colour-options.css";
+import ColourInput from "./ColourInput";
 
 export default function ColourOptions() {
 	return (
-		  
-			// {/* <select className="w-full bg-grey-22 mt-2 h-12 rounded-lg px-6  text-grey-67 grid grid-cols-4 grid-flow-row col-auto row-auto hover:bg-transparent">
-			// 	{/* <option className="w-full" disabled>Choose a colour</option> */}
-				// {/* <option
-				// 	value="black"
-				// 	id="blackSelect"
-				// 	className="w-1/ h-12 bg-green-600"
-				// >
-				// 	<div className="w-12 bg-black h-12">Yes</div>
-				// </option>
-				// <option
-				// 	value="red"
-				// 	className="w-6 bg-red-600 h-8 inline-grid"
-				// >
-				// 	No
-				// </option> */}
-				// {/* <option
-				// 	value="blue"
-				// 	className="w-6 bg-blue-600 h-8 inline-grid"
-				// >
-				// 	No
-				// </option>
-				// <option
-				// 	value="blue"
-				// 	className="w-6 bg-green-600 h-8 inline-grid"
-				// >
-				// 	No
-				// </option> */}
-			// {/* </select> */} 
-		
-
-		<div className="grid grid-cols-6 grid-flow-row col-auto row-auto w-full  gap-1">
-			<div className="w-auto p-2 bg-black">
-				<input type="checkbox" className="bg-black h-16 w-16 text-black checked:bg-black checked:border-black checked:outline-black checked:fill-black"/>
-			</div>
-		    <div className="w-auto p-2 bg-red-600">
-				<input type="checkbox" className="bg-black h-4 w-4"/>
-			</div>
-		    <div className="w-auto p-2 bg-blue-600">
-				<input type="checkbox" className="bg-black h-4 w-4"/>
-			</div>
-		    <div className="w-auto p-2 bg-green-600">
-				<input type="checkbox" className="bg-black h-4 w-4"/>
-			</div>
+		<div className="flex flex-wrap flex-row w-full gap-2 mt-2 justify-between">
+			<ColourInput
+				value="black"
+				className="bg-black"
+			/>
+			<ColourInput
+				value="white"
+				className="bg-white"
+			/>
+			<ColourInput
+				value="gray"
+				className="bg-gray-600"
+			/>
+			<ColourInput
+				value="brown"
+				className="bg-orange-950"
+			/>
+			<ColourInput
+				value="red"
+				className="bg-[rgb(255,0,0)]"
+			/>
+			<ColourInput
+				value="orange"
+				className="bg-orange-600"
+			/>
+			<ColourInput
+				value="yellow"
+				className="bg-yellow-400"
+			/>
+			<ColourInput
+				value="lime"
+				className="bg-lime-500"
+			/>
+			<ColourInput
+				value="green"
+				className="bg-green-500"
+			/>
+			<ColourInput
+				value="emerald"
+				className="bg-emerald-500"
+			/>
+			<ColourInput
+				value="teal"
+				className="bg-teal-500"
+			/>
+			<ColourInput
+				value="cyan"
+				className="bg-cyan-500"
+			/>
+			<ColourInput
+				value="sky"
+				className="bg-sky-500"
+			/>
+			<ColourInput
+				value="blue"
+				className="bg-blue-600"
+			/>
+			<ColourInput
+				value="indigo"
+				className="bg-indigo-700"
+			/>
+			<ColourInput
+				value="purple"
+				className="bg-purple-800"
+			/>
+			<ColourInput
+				value="fuchsia"
+				className="bg-fuchsia-700"
+			/>
+			<ColourInput
+				value="pink"
+				className="bg-pink-600"
+			/>
 		</div>
 	);
 }
