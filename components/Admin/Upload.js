@@ -9,6 +9,7 @@ export default function Upload() {
 	useEffect(() => {
 		uploadCtx.setImages(totalImages);
 	}, [totalImages]);
+	const [errorMessage, setErrorMessage] = useState("")
 
 	return (
 		<>
@@ -22,12 +23,17 @@ export default function Upload() {
 						Url: response.url,
 					}));
 					setTotalImages([...newImages]);
+					setErrorMessage("")
 					console.log("Files: ", res, totalImages);
 				}}
 				onUploadError={(error) => {
-					console.log("Error: ", error.message);
+					console.log("Error: ", error.code);
+					if(error.code == "INTERNAL_SERVER_ERROR"){
+						setErrorMessage("Please Check Your Internet Connection")
+					}
 				}}
 			/>
+			{errorMessage && <p className="text-red-500">{errorMessage}</p>}
 		</>
 	);
 }

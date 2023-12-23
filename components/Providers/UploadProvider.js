@@ -18,7 +18,7 @@ const uploadReducer = (state, action) => {
 		};
 	}
 	if (action.type === "IMAGES") {
-		const currentImages = (state.images==undefined) ? [] : state.images;
+		const currentImages = (	state.images==undefined) ? [] : state.images;
 		const images = currentImages.concat(action.images);
 		console.log(state.images, action.images)
 		console.log(images)
