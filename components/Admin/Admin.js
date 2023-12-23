@@ -4,8 +4,9 @@ import Input from "../UI/Input";
 import Upload from "./Upload";
 import UploadProvider from "../Providers/UploadProvider";
 import UploadContext from "../Providers/UploadContext";
+import ColourOptions from './ColourOptions'
 
-import avatar from "../../assets/avatar.svg";
+import avatar from "../../assets/gamer.png";
 import { useContext, useState, useEffect } from "react";
 
 const AdminPage = (props) => {
@@ -17,8 +18,8 @@ const AdminPage = (props) => {
 		bn: "",
 		co: "",
 		so: "",
-		ip: "",
-		fp: "",
+		ip: 0,
+		fp: 0,
 	});
 	const detailsArray = Object.values(details);
 	useEffect(() => {
@@ -27,17 +28,41 @@ const AdminPage = (props) => {
 			boolean.push(detail.length !== 0);
 		});
 		const allTrue = boolean.every((val) => val === true);
-		console.log(images)
+		console.log(images);
 		if (images !== undefined) {
-			(images.length > 0) ? setIsFull(allTrue) : setIsFull(false);
+			images.length > 0 ? setIsFull(allTrue) : setIsFull(false);
 		}
-	}, [details]);
+	}, [details, images]);
 
 	const submitHandler = (e) => {
 		e.preventDefault();
 		if (images.length > 0 && isFull) {
-			console.log(images.length)
+			console.log(images.length);
 			UploadCtx.setDetails(details);
+			sendImages();
+		}
+	};
+	const sendImages = async () => {
+		try {
+			const response = await fetch("/api/image-upload", {
+				method: "POST",
+				body: JSON.stringify({
+					productName: details.pn,
+					brandName: details.bn,
+					colorOpitons: details.co,
+					sizeOptions: details.so,
+					initialPrice: details.ip,
+					finalPrice: details.fp,
+					images: images,
+				}),
+				headers: {
+					"Content-Type": "application/json",
+				},
+			});
+			const data = await response.json();
+			console.log(data);
+		} catch (error) {
+			console.error(error);
 		}
 	};
 	return (
@@ -46,13 +71,13 @@ const AdminPage = (props) => {
 				Enter Data
 			</h1>
 
-			<button className="text-grey-D9 bg-grey-22 h-24 w-24 rounded-lg mb-1 flex items-center align-middle justify-center">
+			{/* <button className="text-grey-D9 bg-grey-22 h-24 w-24 rounded-lg mb-1 flex items-center align-middle justify-center"> */}
 				<Image
 					src={avatar}
-					className="self-center h-24 w-16"
+					className="self-center h-20 w-20 my-1"
 					alt="avatar"
 				></Image>
-			</button>
+			{/* </button> */}
 			<Upload></Upload>
 			<Input
 				placeholder="Product Name"
@@ -68,6 +93,7 @@ const AdminPage = (props) => {
 					setDetails({ ...details, bn: e.target.value });
 				}}
 			/>
+			<ColourOptions></ColourOptions>
 			<Input
 				placeholder="Colour Options"
 				type="text"
