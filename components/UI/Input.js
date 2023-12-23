@@ -6,7 +6,7 @@ export default function Input(props) {
 			<input
 				type={props.type}
 				placeholder={props.placeholder}
-				className="bg-grey-22 h-12 w-full !text-grey-22 rounded-lg mt-2 px-6 font-athiti font-medium text-lg focus:outline-none"
+				className="bg-grey-22 h-12 w-full text-grey-67 placeholder:text-grey-67 rounded-lg mt-2 px-6 font-athiti font-medium text-lg focus:outline-none"
 				onChange={props.onChange}
 			/>
 		</>

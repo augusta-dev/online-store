@@ -5,7 +5,7 @@ import Upload from "./Upload";
 import UploadProvider from "../Providers/UploadProvider";
 import UploadContext from "../Providers/UploadContext";
 import ColourOptions from "./ColourOptions";
-
+import SizeOptions from "./SizeOptions";
 import avatar from "../../assets/gamer.png";
 import { useContext, useState, useEffect } from "react";
 
@@ -15,6 +15,7 @@ const AdminPage = (props) => {
 	const co = UploadCtx.colorOptions;
 	const [isFull, setIsFull] = useState(false);
 	const [showCO, setShowCO] = useState(false);
+	const [showSO, setShowSO] = useState(false);
 	const [details, setDetails] = useState({
 		pn: "",
 		bn: "",
@@ -51,7 +52,7 @@ const AdminPage = (props) => {
 					productName: details.pn,
 					brandName: details.bn,
 					colorOptions: UploadCtx.colorOptions,
-					sizeOptions: details.so,
+					sizeOptions: UploadCtx.sizeOptions,
 					initialPrice: details.ip,
 					finalPrice: details.fp,
 					images: images,
@@ -94,27 +95,20 @@ const AdminPage = (props) => {
 					setDetails({ ...details, bn: e.target.value });
 				}}
 			/>
-			<button className="w-full h-12 mt-2 text-grey-67 bg-grey-22 text-left px-6"
+			<button className="w-full h-12 mt-2 text-grey-67 bg-grey-22 text-left px-6 rounded-lg"
 				onClick={(e) => {
 					e.preventDefault();
 					setShowCO(!showCO);
 				}}
 			>Colour Options</button>
-			{showCO && <ColourOptions></ColourOptions>}
-			{/* <Input
-				placeholder="Colour Options"
-				type="text"
-				onChange={(e) => {
-					setDetails({ ...details, co: e.target.value });
+			{showCO && <ColourOptions />}
+			<button className="w-full h-12 mt-2 text-grey-67 bg-grey-22 text-left px-6 rounded-lg"
+				onClick={(e) => {
+					e.preventDefault();
+					setShowSO(!showSO);
 				}}
-			/> */}
-			<Input
-				placeholder="Size Options"
-				type="text"
-				onChange={(e) => {
-					setDetails({ ...details, so: e.target.value });
-				}}
-			/>
+			>Size Options</button>
+			{showSO && <SizeOptions />}
 			<Input
 				placeholder="Initial Price in Naira"
 				type="number"

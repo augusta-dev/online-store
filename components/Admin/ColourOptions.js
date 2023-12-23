@@ -4,7 +4,7 @@ import ColourInput from "./ColourInput";
 
 export default function ColourOptions() {
 	return (
-		<div className="flex flex-wrap flex-row w-full gap-2 mt-2 justify-between">
+		<div className="flex flex-wrap flex-row w-full gap-2 mt-2 justify-start items-start">
 			<ColourInput
 				value="black"
 				className="bg-black"

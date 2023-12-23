@@ -32,6 +32,14 @@ const uploadReducer = (state, action) => {
 		console.log(colours);
 		return{...state, colorOptions: colours}
 	}
+	if (action.type === "SIZE"){
+		const sizes = state.sizeOptions == undefined ? {} : state.sizeOptions;
+		// const updateColour = colours.filter(color => action.colour)
+		console.log(action)
+		sizes[action.size[0]] = action.size[1];
+		console.log(sizes);
+		return{...state, sizeOptions: sizes}
+	}
 };
 
 const UploadProvider = (props) => {
@@ -43,8 +51,11 @@ const UploadProvider = (props) => {
 
 	const setImagesHandler = (images) =>
 		dispatchUploadAction({ type: "IMAGES", images: images });
-	const setColourOptionsHandler = (colour, value) => {
+	const setColourOptionsHandler = (colour) => {
 		dispatchUploadAction({ type: "COLOUR", colour: colour});
+	}
+	const setSizeOptionsHandler = (size,) => {
+		dispatchUploadAction({ type: "SIZE", size: size});
 	}
 
 	const uploadContext = {
@@ -58,6 +69,7 @@ const UploadProvider = (props) => {
 		setDetails: setDetailHandler,
 		setImages: setImagesHandler,
 		setColourOption: setColourOptionsHandler,
+		setSizeOption: setSizeOptionsHandler,
 	};
 
 	return (
