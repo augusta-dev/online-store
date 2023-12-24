@@ -59,7 +59,7 @@ export default function ColourOptions() {
 			/>
 			<ColourInput
 				value="blue"
-				className="bg-blue-600"
+				className="bg-blue-6"
 			/>
 			<ColourInput
 				value="indigo"

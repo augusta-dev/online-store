@@ -14,7 +14,7 @@ export default function Upload() {
 	return (
 		<>
 			<UploadButton
-				className=" font-athiti !bg-grey-12 text-grey-67 w-full h-fit rounded my-2 !px-8"
+				className=" font-athiti !bg-grey-12 text-grey-67 w-full h-fit rounded my-2"
 				placeholder=""
 				endpoint="imageUploader"
 				onClientUploadComplete={(res) => {
