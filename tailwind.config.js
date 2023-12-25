@@ -13,20 +13,26 @@ module.exports = {
 					D9: "#D9D9D9",
 					22: "#222222",
 					67: "#676767",
-          87: "#878787",
+					87: "#878787",
 					C3: "#C3C3C3",
 					FE: "#FEFEFE",
 					E1: "#1E1E1E",
 				},
+				blue: {
+					6: "#0000ff",
+				},
+			},
+			width: {
+				36: "100%",
 			},
 			fontFamily: {
 				signika: "var(--font-signika-negative)",
-        athiti: "var(--font-athiti)",
-        source: "var(--font-source-sans-pro)",
+				athiti: "var(--font-athiti)",
+				source: "var(--font-source-sans-pro)",
 			},
-      height:{
-        max: 'max(100vh, 100%)',
-      }
+			height: {
+				max: "max(100vh, 100%)",
+			},
 		},
 	},
 	plugins: [],

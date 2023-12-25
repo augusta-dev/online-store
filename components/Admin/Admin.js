@@ -8,7 +8,9 @@ import ColourOptions from "./ColourOptions";
 import SizeOptions from "./SizeOptions";
 import avatar from "../../assets/gamer.png";
 import { useContext, useState, useEffect } from "react";
-
+import Link from "next/link";
+import cross from "../../assets/cross.svg";
+import { signOut } from "next-auth/react";
 const AdminPage = (props) => {
 	const UploadCtx = useContext(UploadContext);
 	const images = UploadCtx.images;
@@ -67,11 +69,35 @@ const AdminPage = (props) => {
 			console.error(error);
 		}
 	};
+
+	const signout =  (e) => {
+		e.preventDefault();
+		signOut()
+
+	};
 	return (
 		<form className="flex items-center justify-center py-6 px-4  flex-col">
-			<h1 className="text-grey-D9 text-3xl font-source font-semibold pb-3">
-				Enter Data
-			</h1>
+			<div className="flex w-36 justify-center items-center align-middle text-center">
+				<div className="w-full justify-center">
+					<h1 className="text-grey-D9 text-3xl font-source font-semibold pb-3 ">
+						Enter Data
+					</h1>
+				</div>
+
+				<button
+					// href="/signout"
+					onClick={(e) => {
+						signout(e);
+					}}
+					className="w-fit absolute mb-2 ml-[calc(85%-20px)]"
+				>
+					<Image
+						src={cross}
+						className="w-5 h-5"
+						alt="cross"
+					></Image>
+				</button>
+			</div>
 
 			{/* <button className="text-grey-D9 bg-grey-22 h-24 w-24 rounded-lg mb-1 flex items-center align-middle justify-center"> */}
 			<Image
@@ -95,19 +121,25 @@ const AdminPage = (props) => {
 					setDetails({ ...details, bn: e.target.value });
 				}}
 			/>
-			<button className="w-full h-12 mt-2 text-grey-67 bg-grey-22 text-left px-6 rounded-lg"
+			<button
+				className="w-full h-12 mt-2 text-grey-67 bg-grey-22 text-left px-6 rounded-lg"
 				onClick={(e) => {
 					e.preventDefault();
 					setShowCO(!showCO);
 				}}
-			>Colour Options</button>
+			>
+				Colour Options
+			</button>
 			{showCO && <ColourOptions />}
-			<button className="w-full h-12 mt-2 text-grey-67 bg-grey-22 text-left px-6 rounded-lg"
+			<button
+				className="w-full h-12 mt-2 text-grey-67 bg-grey-22 text-left px-6 rounded-lg"
 				onClick={(e) => {
 					e.preventDefault();
 					setShowSO(!showSO);
 				}}
-			>Size Options</button>
+			>
+				Size Options
+			</button>
 			{showSO && <SizeOptions />}
 			<Input
 				placeholder="Initial Price in Naira"
