@@ -11,6 +11,7 @@ import { useContext, useState, useEffect } from "react";
 import Link from "next/link";
 import cross from "../../assets/cross.svg";
 import { signOut } from "next-auth/react";
+import Categories from "./Categories";
 const AdminPage = (props) => {
 	const UploadCtx = useContext(UploadContext);
 	const images = UploadCtx.images;
@@ -18,10 +19,10 @@ const AdminPage = (props) => {
 	const [isFull, setIsFull] = useState(false);
 	const [showCO, setShowCO] = useState(false);
 	const [showSO, setShowSO] = useState(false);
+	const [showCat, setShowCat] = useState(false);
 	const [details, setDetails] = useState({
 		pn: "",
 		bn: "",
-		so: "",
 		ip: 0,
 		fp: 0,
 	});
@@ -55,6 +56,7 @@ const AdminPage = (props) => {
 					brandName: details.bn,
 					colorOptions: UploadCtx.colorOptions,
 					sizeOptions: UploadCtx.sizeOptions,
+					categories: UploadCtx.categories,
 					initialPrice: details.ip,
 					finalPrice: details.fp,
 					images: images,
@@ -70,10 +72,9 @@ const AdminPage = (props) => {
 		}
 	};
 
-	const signout =  (e) => {
+	const signout = (e) => {
 		e.preventDefault();
-		signOut()
-
+		signOut();
 	};
 	return (
 		<form className="flex items-center justify-center py-6 px-4  flex-col">
@@ -141,6 +142,25 @@ const AdminPage = (props) => {
 				Size Options
 			</button>
 			{showSO && <SizeOptions />}
+			<button
+				className="w-full h-12 mt-2 text-grey-67 bg-grey-22 text-left px-6 rounded-lg"
+				onClick={(e) => {
+					e.preventDefault();
+					setShowCat(!showCat);
+				}}
+			>
+				Categories
+			</button>
+
+			{showCat && (
+				<>
+					<p className="text-left font-athithi font-thin text-base text-grey-67 italic mt-1 w-full">
+						Please select all applicable categories!
+					</p>{" "}
+					<Categories />
+				</>
+			)}
+
 			<Input
 				placeholder="Initial Price in Naira"
 				type="number"
