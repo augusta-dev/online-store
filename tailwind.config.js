@@ -21,6 +21,11 @@ module.exports = {
 				blue: {
 					6: "#0000ff",
 				},
+				red: {
+					6: "#F05D56"
+				}, green: {
+					6: "#5BB9A6"
+				}
 			},
 			width: {
 				36: "100%",
