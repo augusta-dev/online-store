@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import "tailwindcss/tailwind.css";
 import React from "react";
 import Background from "../components/layout/Background";
+import Providers from "./Providers";
 const athiti = localFont({
 	src: [
 		{
@@ -34,7 +35,9 @@ export default function RootLayout({ children }) {
 				className={`${athiti.variable} ${signika.variable} ${source.variable}`}
 			>
 				<main>
-					<Background>{children}</Background>
+					<Providers>
+						<Background>{children}</Background>
+					</Providers>
 				</main>
 			</body>
 		</html>
