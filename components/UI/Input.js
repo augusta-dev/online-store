@@ -11,6 +11,7 @@ export default function Input(props) {
 				onMouseOver={props.onMouseOver}
 				onMouseOut={props.onMouseOut}
 				id={props.id}
+				value={props.value}
 			/>
 		</>
 	);

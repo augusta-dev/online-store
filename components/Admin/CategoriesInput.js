@@ -26,7 +26,7 @@ export default function CategoriesInput(props) {
 					<Image
 						src={tick}
 						alt="tick"
-						className="h-5 w-5"
+						className="h-5 w-5 ml-2"
 					/>
 				)}{" "}
 				<h2 className=" text-lg font-athiti pl-2">{props.value}</h2>

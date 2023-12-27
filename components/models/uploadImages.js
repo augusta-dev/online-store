@@ -3,8 +3,9 @@ const imageSchema = new Schema(
 	{
 		productName: String,
 		brandName: String,
-		colorOpitons: String,
-		sizeOptions: String,
+		colorOptions: Object,
+		sizeOptions: Object,
+		categories: Object,
 		initialPrice: Number,
 		finalPrice: Number,
 		images: Array,

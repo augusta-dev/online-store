@@ -23,17 +23,20 @@ const uploadReducer = (state, action) => {
 		const colours =
 			state.colorOptions == undefined ? {} : state.colorOptions;
 		colours[action.colour[0]] = action.colour[1];
+		console.log(colours);
 		return { ...state, colorOptions: colours };
 	}
 	if (action.type === "SIZE") {
 		const sizes = state.sizeOptions == undefined ? {} : state.sizeOptions;
 		sizes[action.size[0]] = action.size[1];
+		console.log(sizes);
 		return { ...state, sizeOptions: sizes };
 	}
 	if (action.type === "CATEGORY") {
 		const categories =
 			state.categories == undefined ? {} : state.categories;
 		categories[action.category[0]] = action.category[1];
+		console.log(categories);
 		return { ...state, categories: categories };
 	}
 };

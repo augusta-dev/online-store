@@ -7,19 +7,21 @@ export async function POST(request) {
 		const {
 			productName,
 			brandName,
-			colorOpitons,
+			colorOptions,
 			sizeOptions,
+			categories,
 			initialPrice,
 			finalPrice,
 			images,
 		} = await request.json();
 		// {return NextResponse.json({ message: "Word not valid" }, { status: 501})}
-            console.log(request)
+		console.log(request);
 		console.log(
 			productName,
 			brandName,
-			colorOpitons,
+			colorOptions,
 			sizeOptions,
+			categories,
 			initialPrice,
 			finalPrice,
 			images,
@@ -29,8 +31,9 @@ export async function POST(request) {
 		await Images.create({
 			productName,
 			brandName,
-			colorOpitons,
+			colorOptions,
 			sizeOptions,
+			categories,
 			initialPrice,
 			finalPrice,
 			images,
