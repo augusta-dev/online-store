@@ -29,10 +29,10 @@ export default function Storepage() {
 	}, []);
 	if (session && session.user.email === "augustan506@gmail.com") {
 		return (
-			<div className="flex items-center justify-center py-6 px-4 font-source flex-col">
+			<div className="flex items-center justify-center py-6 px-4  flex-col">
 				<div className="flex w-36 justify-center items-center align-middle text-center flex-col">
 					<Header value="Images" />
-					<p className="italic mb-1">Total Number of Images: {images.length}</p>
+					<p className="italic mb-1 font-athiti text-lg">Total Number of Images: {images.length}</p>
 					<div className="flex w-full bg-grey-12 gap-1">
 					{images.map((image) => {
 						console.log(image);
