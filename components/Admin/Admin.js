@@ -10,9 +10,9 @@ import { useContext, useState, useEffect } from "react";
 import cross from "../../assets/cross.svg";
 import { signOut, useSession } from "next-auth/react";
 import Categories from "./Categories";
-import warning from "../../assets/warning.svg";
-import Router from "next/router";
-import { useRouter } from "next/navigation";
+import AccessDenied from '../UI/AccessDenied'
+import Link from "next/link";
+import Header from '../UI/Header';
 const AdminPage = (props) => {
 	const UploadCtx = useContext(UploadContext);
 	const images = UploadCtx.images;
@@ -40,7 +40,6 @@ const AdminPage = (props) => {
 			images.length > 0 ? setIsFull(allTrue) : setIsFull(false);
 		}
 	}, [details, images, co]);
-	const router = useRouter();
 
 	const clearall = () => {
 		setDetails({ pn: "", bn: "", ip: 0, fp: 0 });
@@ -48,7 +47,7 @@ const AdminPage = (props) => {
 		setShowCO(false);
 		setShowSO(false);
 		setShowCat(false);
-		UploadCtx.setImages({});
+		UploadCtx.clearImages();
 	};
 
 	const submitHandler = (e) => {
@@ -60,6 +59,7 @@ const AdminPage = (props) => {
 			clearall();
 		}
 		console.log(details);
+		console.log(images)
 	};
 	const sendImages = async () => {
 		try {
@@ -95,13 +95,8 @@ const AdminPage = (props) => {
 		return (
 			<form className="flex items-center justify-center py-6 px-4  flex-col">
 				<div className="flex w-36 justify-center items-center align-middle text-center">
-					<div className="w-full justify-center">
-						<h1 className="text-grey-D9 text-3xl font-source font-semibold pb-3 ">
-							Enter Data
-						</h1>
-					</div>
+					<Header value="Enter Data" />
 					<button
-						// href="/signout"
 						onClick={(e) => {
 							signout(e);
 						}}
@@ -119,8 +114,8 @@ const AdminPage = (props) => {
 					className="self-center h-20 w-20 my-1"
 					alt="avatar"
 				></Image>
-				{/* </button> */}
-				<Upload></Upload>
+				<Upload />
+				<p className="-mt-1 italic font-athiti">To avoid repetition, you can view all images <Link href="/images" className="hover:underline">here</Link></p>
 				<Input
 					placeholder="Product Name"
 					type="text"
@@ -208,16 +203,7 @@ const AdminPage = (props) => {
 		);
 	} else {
 		return (
-			<div className="flex flex-col wrap justify-center align-middle items-center h-[calc(100dvh-176px)]">
-				<Image
-					src={warning}
-					className="w-36 h-36"
-					alt="warning"
-				></Image>
-				<p className=" text-grey-67 pt-6 text-lg font-athiti ">
-					You do not have access to this page!
-				</p>
-			</div>
+			<AccessDenied />
 		);
 	}
 };

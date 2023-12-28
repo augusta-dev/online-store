@@ -14,20 +14,7 @@ export async function POST(request) {
 			finalPrice,
 			images,
 		} = await request.json();
-		// {return NextResponse.json({ message: "Word not valid" }, { status: 501})}
-		console.log(request);
-		console.log(
-			productName,
-			brandName,
-			colorOptions,
-			sizeOptions,
-			categories,
-			initialPrice,
-			finalPrice,
-			images,
-		);
 		await connectMongo();
-
 		await Images.create({
 			productName,
 			brandName,

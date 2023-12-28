@@ -19,6 +19,11 @@ const uploadReducer = (state, action) => {
 		const images = currentImages.concat(action.images);
 		return { ...state, images: images };
 	}
+	if (action.type === "CLEAR") {
+		// const currentImages = state.images == undefined ? [] : state.images;
+		// const images = currentImages.concat(action.images);
+		return { ...state, images: [] };
+	}
 	if (action.type === "COLOUR") {
 		const colours =
 			state.colorOptions == undefined ? {} : state.colorOptions;
@@ -59,6 +64,9 @@ const UploadProvider = (props) => {
 	const setCategoriesHandler = (category) => {
 		dispatchUploadAction({ type: "CATEGORY", category: category });
 	};
+	const clearImagesHandler = () => {
+		dispatchUploadAction({ type: "CLEAR" });
+	};
 
 	const uploadContext = {
 		images: uploadState.images,
@@ -74,6 +82,7 @@ const UploadProvider = (props) => {
 		setColourOption: setColourOptionsHandler,
 		setSizeOption: setSizeOptionsHandler,
 		setCategories: setCategoriesHandler,
+		clearImages: clearImagesHandler,
 	};
 
 	return (
