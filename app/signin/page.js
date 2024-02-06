@@ -23,7 +23,7 @@ export default function Signin() {
 				password,
 				redirect: false,
 			});
-			console.log("something", res);
+			console.log("something", res, email, password);
 			if (res.error) {
 				setError({
 					color: "bg-red-6",
